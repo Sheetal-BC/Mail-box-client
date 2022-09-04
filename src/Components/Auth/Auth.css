@@ -1,0 +1,64 @@
+.signup form{
+ margin: 3rem auto;
+  width: 75%;
+  max-width: 22rem;
+  height: 22rem;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 3px 3px 4px black;
+  padding: 1rem;
+  text-align: center;
+  justify-items: space-between;
+  
+}
+
+.heading{
+    text-align: center;
+    
+}
+
+.heading h2{
+  font-size: 25px;
+  font-weight: 600;
+  color: rgb(65, 37, 92);
+}
+
+input{
+    font: inherit;
+    background-color: white;
+    border: 1px solid rgb(65, 37, 92);
+    border-radius: 12px;
+    align-items: center;
+    width: 90%;
+    text-align: left;
+    margin:10px ; 
+    padding: 10px;
+    justify-content: space-around;
+  }
+  
+
+
+.sign-btn button{
+   background-color:  rgb(65, 37, 92);
+   width: 95%;
+   height: 2.5rem;
+   border: none;
+   border-radius: 100px;
+   color: white;
+   font-size: 18px;
+   margin-top: 20px;
+   font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+
+.msg-box button{
+   width: 28%;
+   height: 40px;
+   border-radius: 6px;
+   border:1px solid rgb(65, 37, 92);
+   background-color: rgb(206, 236, 247);
+   color: rgb(65, 37, 92);
+   font-family: "Comic Sans MS", "Comic Sans", cursive;
+   font-weight: 500;
+}
+
