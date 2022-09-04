@@ -49,11 +49,13 @@ const submitHandler = async(event) => {
 
 
     return (
-      <div className="signup">
-        <form onSubmit={submitHandler}>
+      <div className="container">
+        <div className="img-container">
+          <img src={process.env.PUBLIC_URL + "gmail.png"} alt="mail"></img>
+        </div>
+        <form onSubmit={submitHandler} className="signup">
           <div className="heading">
             <h2>Sign Up</h2>
-
             <div className="useremail">
               <input
                 type="email"
@@ -75,24 +77,25 @@ const submitHandler = async(event) => {
               />
             </div>
             <div className="confirmpassword ">
-                <input
-                  className="input-signup"
-                  type="password"
-                  placeholder="Confirm Password"
-                  htmlFor="password"
-                  minLength="6"
-                  maxLength="16"
-                  ref={confirmPasswordRef}
-                  required
-                />
+              <input
+                className="input-signup"
+                type="password"
+                placeholder="Confirm Password"
+                htmlFor="password"
+                minLength="6"
+                maxLength="16"
+                ref={confirmPasswordRef}
+                required
+              />
             </div>
             <div className="sign-btn">
-            <button>Sign Up</button>
+              <button>Sign Up</button>
             </div>
           </div>
+         
         </form>
-        <div className="msg-box">
-          <button>Dont have an acount? SignUp</button>
+         <div className="msg-box">
+          <button>Dont have an account? SignUp</button>
         </div>
       </div>
     );
