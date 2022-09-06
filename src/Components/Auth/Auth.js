@@ -94,7 +94,7 @@ const submitHandler = async(event) => {
          inputPasswordRef.current.value = "";
          confirmPasswordRef.current.value = "";
          setIsLogin(true);
-         setIsLoading(false);
+            setIsLoading(false);
        } else {
          const data = await response.json();
          alert(data.error.message);

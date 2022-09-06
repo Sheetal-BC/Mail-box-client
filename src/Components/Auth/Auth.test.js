@@ -1,6 +1,13 @@
-import { render, screen } from "@testing-library/react";
+import { render as rtlRender, screen } from "@testing-library/react";
 import Auth from "./Auth";
+import { Provider } from 'react-redux';
+import store from "../store/index";
 
+const render = component => rtlRender(
+<Provider store={store}>
+ {component}
+</Provider>
+)
 
 describe('Auth component', () => {
 
@@ -12,7 +19,7 @@ describe('Auth component', () => {
 
 test("renders login text", () => {
   render(<Auth />);
-  const loginElement = screen.queryByText(/login/i);
+  const loginElement = screen.queryByText(/logging/i);
   expect(loginElement).not.toBeInTheDocument();
 });
 
@@ -29,11 +36,48 @@ test("renders alt text", () => {
   expect(altElement).toBeInTheDocument();
 }); 
 
-test("renders password text", () => {
+test("renders login text", () => {
   render(<Auth />);
-  const textElement = screen.getByText(/SignUp/i);
-  expect(textElement).toBeInTheDocument();
+  const loginTextElement = screen.getByText(/Login/i);
+  expect(loginTextElement).toBeInTheDocument();
 }); 
+
+test("renders button text", () => {
+  render(<Auth />);
+  const buttonElement = screen.getByRole("button", {
+    name: /sign up/i,
+  });
+  expect(buttonElement).toBeInTheDocument();
+});
+
+test("renders login button text", () => {
+  render(<Auth />);
+  const loginElement = screen.getByRole("button", {
+    name: /login/i,
+  });
+  expect(loginElement).toBeInTheDocument();
+});
+
+test("renders signin text", () => {
+  render(<Auth />);
+  const loginElement = screen.queryByText(/signin/i);
+  expect(loginElement).not.toBeInTheDocument();
+});
+
+test("renders password in login text", () => {
+  render(<Auth />);
+  const passwordLoginElement = screen.getByRole("textbox");
+  expect(passwordLoginElement).toBeInTheDocument();
+}); 
+
+test("renders password in login text", () => {
+  render(<Auth />);
+  const passwordLoginElement = screen.getByRole("img", {
+  name: /mail/i,
+});
+  expect(passwordLoginElement).toBeInTheDocument();
+}); 
+
 
 });
 
