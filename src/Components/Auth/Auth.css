@@ -13,6 +13,7 @@
   margin: auto;
   margin-top: 50px;
   border-radius: 20px;
+  background-color: white;
 }
 
 .signup {
@@ -33,7 +34,7 @@
   height: 35rem;
   border-radius: 20px 0px 0px 20px;
 }
-.input-signup{
+.input-signup input{
     font: inherit;
     color: black;
     background-color:  rgb(231, 211, 250);
@@ -47,7 +48,7 @@
     border: none;
   }
   
-  .input-login{
+  .input-login input{
     font: inherit;
     color: white;
     background-color: black;
@@ -55,7 +56,7 @@
     align-items: center;
     width: 90%;
     text-align: left;
-    margin:18px ; 
+    margin:25px ; 
     padding: 18px;
     justify-content: space-around;
 
@@ -74,7 +75,7 @@
    margin-bottom: 30px;
 }
 
-input{
+.heading input{
     font: inherit;
     background-color: rgb(231, 211, 250);
     border: none;

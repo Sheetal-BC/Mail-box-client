@@ -5,10 +5,12 @@ import Home from './Components/Pages/Home';
 import { useSelector } from "react-redux";
 import './App.css';
 import Navbar from './Components/Layout/Navbar';
+import ComposeMail from './Components/ComposeMail/ComposeMail';
 
 
 function App() {
   const show = useSelector((state) => state.user.isAuthenticated);
+   const openComposeMail = useSelector((state) => state.mail.sendMessageIsOpen);
   return (
     <Fragment>
      
@@ -23,6 +25,9 @@ function App() {
             </Route>}
 
           </Switch>
+          <div>
+            {openComposeMail && <ComposeMail />}
+          </div>
       
     </BrowserRouter>
     </Fragment>

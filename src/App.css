@@ -1,4 +1,7 @@
  body {
       text-align: center;
       font-family: "Comic Sans MS", "Comic Sans", cursive;
+      background-image: url('gmaill.png');
+      background-size:cover;
+      
     }

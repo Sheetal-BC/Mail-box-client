@@ -60,6 +60,7 @@ const submitHandler = async(event) => {
        console.log("User has successfully Logged in.");
        localStorage.setItem("Token", data.idToken);
        localStorage.setItem("userID", data.localId);
+       localStorage.setItem("email", data.email);
        inputEmailRef.current.value = "";
        inputPasswordRef.current.value = "";
        setIsLoading(false);
@@ -172,9 +173,9 @@ const submitHandler = async(event) => {
             {isLogin ? "Dont have an acount? SignUp" : "Have an account? login"}
           </button>
         </div>
-        </div>
-       
       </div>
+       
+     </div>
     );
 }
 
