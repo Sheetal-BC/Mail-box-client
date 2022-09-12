@@ -1,0 +1,36 @@
+.sidebar_option{
+    display: flex;
+    align-items: center;
+    height: 35px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 0 20px;
+    margin-right: 25px ;
+    cursor: pointer;
+}
+
+.sidebar_option:hover{
+    background-color: whitesmoke;
+}
+
+.sidebar_option h3{
+    font-size: 17px;
+    flex: 1;
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+.sidebar_option svg{
+     color: lightslategray;
+     font-size: 20px;
+}
+
+.sidebar--active{
+    background-color:rgb(209, 182, 235) ;
+}
+
+
+.sidebar--active svg,
+.sidebar--active h3{
+    color: rgb(65, 37, 92);
+}

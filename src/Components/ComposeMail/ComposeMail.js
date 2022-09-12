@@ -15,17 +15,22 @@ const ComposeMail = () => {
   const dispatch = useDispatch();
 
 const sendMailHandler = async(event) =>{
+
      event.preventDefault();
 
       const enteredToEmail = emailRef.current.value;
       const senderEmail = localStorage.getItem('email');
       const reciever = enteredToEmail.substring(0, enteredToEmail.lastIndexOf("@"));
       const Sender = senderEmail.substring(0, senderEmail.lastIndexOf("@"));
+      console.log(Sender)
       const data = {
-        senderEmail,
+        Sender,
+        reciever,
         subject: subjectRef.current.value,
         body: text,
+        time: new Date().getTime()
       };
+      console.log(data)
       try{
           const res = await axios.post(
             `https://mail-box-client-8aa4b-default-rtdb.firebaseio.com/${reciever}/receive.json`,

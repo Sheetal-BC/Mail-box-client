@@ -5,7 +5,7 @@ import './Navbar.css';
 import {openSendMessage} from '../store/mailSlice';
 import { closeSendMessage } from "../store/mailSlice";
 import { useDispatch } from "react-redux";
-import { faPencil} from "@fortawesome/free-solid-svg-icons";
+import { faPencil, faSearch, faChevronDown} from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { logout } from "../store/auth";
@@ -33,25 +33,30 @@ const Navbar = () => {
           <FontAwesomeIcon icon={faEnvelope} className="edit" size="1x" />
           Mail box
         </div>
-        <nav>
-          <ul>
-            {isLoggedIn && (
-              <button className="compose_btn" onClick={composeHandler}>
-                Compose
-                <FontAwesomeIcon icon={faPencil} className="envelope" size="1x" />
-              </button>
-            )}
-            <li>{isLoggedIn && <Link to="/Home">Home</Link>}</li>
-
-            <li>
-              {isLoggedIn && (
+        <div className="search_icon">
+          <input type="text" placeholder="Search" />
+          <button className="drown_arrow">
+            <FontAwesomeIcon
+              icon={faChevronDown}
+              className="envelope"
+              size="1x"
+            />
+          </button>
+          <button className="search">
+            <FontAwesomeIcon icon={faSearch} className="envelope" size="1x" />
+          </button>
+        </div>
+         <div>
+        {isLoggedIn && (
                 <button className="logout_btn" onClick={logoutHandler}>
                   Logout
                 </button>
               )}
-            </li>
-          </ul>
-        </nav>
+         </div>
+
+             
+          
+       
       </header>
     );
 }
