@@ -118,64 +118,62 @@ const submitHandler = async(event) => {
     return (
       <div className="container">
         <div className="img-container">
-          <img src={process.env.PUBLIC_URL + "gmail.png"} alt="mail"></img>
+          <img src={process.env.PUBLIC_URL + "gmail.png"} alt="mail" />
         </div>
         <div className="signup">
-           <form onSubmit={submitHandler}>
-          <div className="heading">
-            <h2>{isLogin ? "Login" : "Sign Up"}</h2>
+          <form onSubmit={submitHandler}>
+            <div className="heading">
+              <h2>{isLogin ? "Login" : "Sign Up"}</h2>
 
-            <div className="useremail">
-              <input
-                className={isLogin ? "input-login" : "input-signup"}
-                type="email"
-                placeholder="Email"
-                htmlFor="email"
-                ref={inputEmailRef}
-                required
-              />
-            </div>
-            <div className="userpassword">
-              <input
-                className={isLogin ? "input-login" : "input-signup"}
-                type="password"
-                placeholder="Password"
-                htmlFor="password"
-                minLength="6"
-                maxLength="16"
-                ref={inputPasswordRef}
-                required
-              />
-            </div>
-            <div className="confirmpassword ">
-              {!isLogin && (
+              <div className={isLogin ? "input-login" : "input-signup"}>
                 <input
-                  className="input-signup"
+                  type="email"
+                  placeholder="Email"
+                  htmlFor="email"
+                  ref={inputEmailRef}
+                  required
+                />
+              </div>
+              <div className={isLogin ? "input-login" : "input-signup"}>
+                <input
                   type="password"
-                  placeholder="Confirm Password"
+                  placeholder="Password"
                   htmlFor="password"
                   minLength="6"
                   maxLength="16"
-                  ref={confirmPasswordRef}
+                  ref={inputPasswordRef}
                   required
                 />
-              )}
+              </div>
+              <div className="input-signup" >
+                {!isLogin && (
+                  <input
+                    
+                    type="password"
+                    placeholder="Confirm Password"
+                    htmlFor="password"
+                    minLength="6"
+                    maxLength="16"
+                    ref={confirmPasswordRef}
+                    required
+                  />
+                )}
+              </div>
+              <div className="sign-btn">
+                {!isLoading && <button>{isLogin ? "Login" : "Sign up"}</button>}
+                {isLoading && <p>Sending request...</p>}
+              </div>
             </div>
-            <div className="sign-btn">
-              {!isLoading && <button>{isLogin ? "Login" : "Sign up"}</button>}
-              {isLoading && <p>Sending request...</p>}
-              {isLogin && <Link to="/forgotpassword">Forgot Password</Link>}
-            </div>
+          </form>
+          <div className="msg-box">
+            <button onClick={switchHandler}>
+              {isLogin
+                ? "Dont have an acount? SignUp"
+                : "Have an account? login"}
+            </button>
           </div>
-        </form>
-        <div className="msg-box">
-          <button onClick={switchHandler}>
-            {isLogin ? "Dont have an acount? SignUp" : "Have an account? login"}
-          </button>
         </div>
       </div>
-       
-     </div>
     );
 }
 

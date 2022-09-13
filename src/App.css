@@ -1,16 +1,10 @@
  body {
       text-align: center;
       font-family: "Comic Sans MS", "Comic Sans", cursive;
-      /* background-image: url('gmaill.png');
-      background-size:cover;  */
+
     }
 
-.app{
-   display: grid;
-  grid-template-columns: 250px auto 50px;
-}
-
 .app_body{
-  display: grid;
-  grid-template-columns: 250px auto 50px;
+      display: grid;
+      grid-template-columns: 250px auto 50px;
 }

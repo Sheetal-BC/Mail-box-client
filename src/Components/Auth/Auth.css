@@ -2,17 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+ 
 }
 
 .container{
   display: flex;
-  flex-direction: row;
   height: 35rem;
   width: 80rem;
   box-shadow: 15px 15px 20px black;
-  margin: auto;
   margin-top: 50px;
-  border-radius: 20px;
+  border-radius: 0px 20px 20px 0px;
   background-color: white;
 }
 
@@ -22,7 +21,6 @@
   max-width: 22rem;
   height: 22rem;
   border-radius: 20px;
-  background-color: white;
   box-shadow: 2px 3px 4px black;
   padding: 1rem;
  
@@ -32,8 +30,8 @@
   size: 100%;
   width: 42rem;
   height: 35rem;
-  border-radius: 20px 0px 0px 20px;
 }
+
 .input-signup input{
     font: inherit;
     color: black;
@@ -51,7 +49,6 @@
   .input-login input{
     font: inherit;
     color: white;
-    background-color: black;
     border-radius: 10px;
     align-items: center;
     width: 90%;
@@ -60,6 +57,12 @@
     padding: 18px;
     justify-content: space-around;
 
+  }
+
+  .input-login.input-login input{
+     background-color: black;
+     margin-bottom: 2rem;
+     height: 2.4rem;
   }
 
 .heading{
@@ -100,7 +103,7 @@
    margin-top: 20px;
    font-family: "Comic Sans MS", "Comic Sans", cursive;
    margin-bottom: 35px;
-    box-shadow: 2px 2px 3px black;
+   box-shadow: 2px 2px 3px black;
 }
 
 .sign-btn button:hover{

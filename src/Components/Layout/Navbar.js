@@ -1,11 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import './Navbar.css';
-import {openSendMessage} from '../store/mailSlice';
 import { closeSendMessage } from "../store/mailSlice";
 import { useDispatch } from "react-redux";
-import { faPencil, faSearch, faChevronDown} from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faChevronDown} from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { logout } from "../store/auth";
@@ -15,10 +13,6 @@ const Navbar = () => {
 
     const isLoggedIn = useSelector((state) => state.user.isAuthenticated);
     const dispatch = useDispatch();
-
-    const composeHandler = () => {
-      dispatch(openSendMessage());
-    }
 
     const logoutHandler = () => {
       localStorage.removeItem('Token');
