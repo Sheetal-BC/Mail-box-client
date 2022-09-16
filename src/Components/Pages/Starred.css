@@ -1,0 +1,10 @@
+.starred_items{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.starred_items h3{
+    color: gray;
+    font-weight: 300;
+}

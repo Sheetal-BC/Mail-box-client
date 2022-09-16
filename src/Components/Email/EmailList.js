@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import EmailInbox from "./EmailInbox";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addNewMails } from "../store/mailSlice";
 import "./EmailList.css";
 
 const EmailList = () => {
- 
-  const [email, setEmail] = useState([]);
-
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.mail.mailItem);
+  
   useEffect(() => {
     fecthMails();
   }, []);
 
-  const fecthMails = async () => { 
+  const fecthMails = async () => {
     let arr = [];
+
     const emailName = localStorage.getItem("email");
     const name = emailName.substring(0, emailName.lastIndexOf("@"));
     try {
@@ -26,7 +29,8 @@ const EmailList = () => {
           arr[index].id = key;
           index++;
         }
-        setEmail([...arr]);
+
+        dispatch(addNewMails(arr));
         console.log(arr);
       }
     } catch (err) {
@@ -35,20 +39,29 @@ const EmailList = () => {
   };
 
   return (
-    <div className="email_list">
-      {email.map((element) => {
-        return (
-          <EmailInbox
-            Sender={element.Sender}
-            subject={element.subject}
-            body={element.body}
-            key={element.id}
-            id={element.id}
-            time={element.time}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div className="email_list">
+        {email === [] ? (
+          <h3>Your new messages will appear here.</h3>
+        ) : (
+          email.map((element) => {
+            return (
+              <EmailInbox
+                Sender={element.Sender}
+                reciever={element.reciever}
+                email={element.email}
+                subject={element.subject}
+                body={element.body}
+                isRead={element.read}
+                key={element.id}
+                id={element.id}
+                time={element.time}
+              />
+            );
+          })
+        )}
+      </div>
+    </>
   );
 };
 

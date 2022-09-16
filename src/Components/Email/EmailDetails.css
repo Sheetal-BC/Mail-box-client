@@ -1,0 +1,143 @@
+.mails {
+  flex: 1;
+  background-color: whitesmoke;
+}
+
+.mail_tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.mail_toolsleft {
+  height: 2.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 15px;
+  cursor: pointer;
+}
+.mail_toolsleft p {
+  margin-right: 20px;
+}
+
+.mail_toolsleft svg {
+  color: lightslategray;
+  margin-right: 10px;
+}
+
+.mail_toolsleft svg:hover {
+  color: darkslategray;
+}
+
+.mail_toolsmiddle {
+  display: flex;
+  align-items: center;
+}
+.mail_toolsmiddle p {
+  margin-right: 10px;
+}
+.mail_toolsmiddle svg {
+  color: lightslategray;
+  margin-right: 10px;
+}
+.mail_toolsmiddle svg:hover {
+  color: darkslategray;
+}
+.mail_toolsright svg {
+  color: lightslategray;
+  margin-right: 10px;
+}
+.mail_toolsright svg:hover {
+  color: darkslategray;
+}
+.mail_bodyHeader {
+  display: flex;
+  align-items: center;
+  border-radius: 1px solid whitesmoke;
+  padding: 20px;
+  font-size: 20px;
+  position: relative;
+}
+
+.mail_header {
+  border-bottom: 1px solid whitesmoke;
+  width: 100%;
+  text-align: left;
+}
+.mail_header h2 {
+  font-weight: 500;
+}
+.mail_message {
+  text-align: left;
+}
+.mail_subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  margin-right: 10px;
+}
+.user_icon {
+  color: gray;
+}
+.subheader {
+  display: flex;
+  margin-left: 10px;
+}
+
+.subheader h2 {
+  font-weight: 600;
+}
+.subheader h2 span {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: gray;
+}
+.sender {
+  text-align: left;
+  margin-left: 20px;
+}
+.sender h3 {
+  font-weight: 300;
+  font-size: 15px;
+  padding-left: 6px;
+}
+.mail_body {
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+  background-color: white;
+  padding: 20px;
+  height: 80vh;
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.24);
+}
+
+.mail_message p {
+  overflow-wrap: break-word;
+  width: 60rem;
+  padding: 10px;
+  padding-top: 50px;
+  margin-right: 20px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.printIcon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.printIcon svg {
+  color: gray;
+}
+
+.printIcon svg:hover {
+  color: darkslategray;
+}
+
+.printIcon p {
+  color: gray;
+  font-size: 15px;
+  padding-left: 10px;
+}

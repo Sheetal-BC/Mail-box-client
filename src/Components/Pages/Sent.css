@@ -1,0 +1,10 @@
+.sent_items{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sent_items h3{
+    color: gray;
+    font-weight: 300;
+}

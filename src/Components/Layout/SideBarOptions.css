@@ -1,26 +1,35 @@
 .sidebar_option{
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 20px 135px 10px;
     height: 35px;
     padding: 0 20px;
     margin-right: 25px ;
     cursor: pointer;
+    
 }
-
-.sidebar_option:hover{
-    background-color: whitesmoke;
+.sidebar_option:hover,
+.sidebar_option p:hover,
+.sidebar_option h3:hover{
+ 
+     background-color: whitesmoke;
+    
 }
-
+.sidebar_option p{
+    padding-top: 5px;
+    font-size: 15px;
+}
 .sidebar_option h3{
     font-size: 17px;
     flex: 1;
     margin-left: 10px;
     font-weight: normal;
+    padding-top: 5px;
 }
 
 .sidebar_option svg{
      color: lightslategray;
      font-size: 20px;
+     padding-top: 5px;
 }
 
 .sidebar--active{

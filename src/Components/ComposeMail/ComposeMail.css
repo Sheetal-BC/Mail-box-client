@@ -25,21 +25,21 @@
 
 .composeMail_header button {
   width: 2.2rem;
-  background-color: #f5096b;
+  color: rgb(65, 37, 92);
+  background-color: rgb(209, 182, 235);
   border: none;
-  height: 2.3rem;
-  font-size: 2rem;
+  height: 2.1rem;
+  font-size: 1.8rem;
   padding-bottom: 5px;
   border-radius: 5px;
-  color: white;
   margin-top: 20px;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   box-shadow: 2px 2px 3px black;
 }
 
 .composeMail_header button:hover {
-  background-color: #f8abcb;
-  color: #f5096b;
+  background-color: rgb(200, 164, 233);
+  color: rgb(65, 37, 92);
   box-shadow: 2px 2px 3px black;
   cursor: pointer;
 }
@@ -53,29 +53,27 @@
 }
 
 .compose_input input::placeholder {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-weight: 500;
   font-size: 1rem;
 }
 
 .sendMail {
   width: 12rem;
-  background-color: #f5096b;
+  color: rgb(65, 37, 92);
+  background-color: rgb(209, 182, 235);
   border: none;
   height: 2.5rem;
   margin-top: 20px;
   border-radius: 100px;
-  color: white;
   font-size: 18px;
   margin-top: 20px;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
   margin-bottom: 35px;
   box-shadow: 2px 2px 3px black;
 }
 
 .sendMail:hover {
-  background-color: #f8abcb;
-  color: #f5096b;
+  background-color: rgb(200, 164, 233);
+  color: rgb(65, 37, 92);
   box-shadow: 2px 2px 3px black;
   cursor: pointer;
 }

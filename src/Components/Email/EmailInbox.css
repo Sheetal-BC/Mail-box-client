@@ -24,7 +24,8 @@
   margin-right: 15px;
 }
 
-.mailBody_left h4 {
+.mailBody_left h4.read {
+  font-weight: 400;
   font-size: 15px;
 }
 .mailBody_middle {
@@ -45,21 +46,40 @@
   padding-right: 10px;
   color: black;
   font-size: 15px;
+  font-weight: 400;
+}
+
+.mailBody_middle b.unread {
+  font-weight: 800;
 }
 .mailBody_middle h6 {
   display: flex;
   align-items: center;
   color: lightslategray;
   font-size: 12px;
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mailBody_right {
   display: flex;
   align-items: center;
-  flex: 10%;
+  flex: 12%;
 }
 
 .mailBody_right p {
   font-size: 12px;
   color: lightslategray;
+}
+
+.mailBody_right p.unread {
+  font-size: 12px;
+  font-weight: 800;
+}
+.mailBody_left h1 {
+  color: rgb(209, 182, 235);
+  padding-right: 5px;
+  padding-bottom: 7px;
 }

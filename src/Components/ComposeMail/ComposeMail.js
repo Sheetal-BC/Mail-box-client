@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import { useDispatch } from "react-redux";
-import {closeSendMessage} from '../store/mailSlice';
+import {addNewMails, closeSendMessage} from '../store/mailSlice';
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
@@ -26,9 +26,11 @@ const sendMailHandler = async(event) =>{
       const data = {
         Sender,
         reciever,
+        email: senderEmail,
         subject: subjectRef.current.value,
         body: text,
-        time: new Date().getTime()
+        read:false,
+        time: new Date().getTime(),
       };
       console.log(data)
       try{
@@ -44,7 +46,9 @@ const sendMailHandler = async(event) =>{
               );
               if(res2.statusText==='OK'){
                 alert('Sent Mail Successfully');
+               
                  dispatch(closeSendMessage());
+                 
               }else{
                   throw new Error('Error sending a mail');
               }

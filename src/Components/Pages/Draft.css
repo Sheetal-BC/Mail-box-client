@@ -1,0 +1,10 @@
+.draft_items{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.draft_items h3{
+    color: gray;
+    font-weight: 300;
+}

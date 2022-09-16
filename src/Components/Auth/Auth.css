@@ -7,11 +7,11 @@
 
 .container{
   display: flex;
+  flex-direction: row;
   height: 35rem;
-  width: 80rem;
+  width: 85.4rem;
   box-shadow: 15px 15px 20px black;
   margin-top: 50px;
-  border-radius: 0px 20px 20px 0px;
   background-color: white;
 }
 
@@ -101,7 +101,6 @@
    color: white;
    font-size: 18px;
    margin-top: 20px;
-   font-family: "Comic Sans MS", "Comic Sans", cursive;
    margin-bottom: 35px;
    box-shadow: 2px 2px 3px black;
 }
@@ -124,7 +123,6 @@
    border: none;
    background-color:  rgb(231, 211, 250);
    color: rgb(65, 37, 92);
-   font-family: "Comic Sans MS", "Comic Sans", cursive;
    font-weight: 500;
    position: relative;
    top: 30px;
