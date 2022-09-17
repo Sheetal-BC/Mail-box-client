@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EmailInbox from "./EmailInbox";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,6 @@ import "./EmailList.css";
 const EmailList = () => {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.mail.mailItem);
-  
   useEffect(() => {
     fecthMails();
   }, []);
@@ -31,6 +30,7 @@ const EmailList = () => {
         }
 
         dispatch(addNewMails(arr));
+        
         console.log(arr);
       }
     } catch (err) {
@@ -38,13 +38,30 @@ const EmailList = () => {
     }
   };
 
+  const deleteHandler = (id) => {
+       const emailName = localStorage.getItem("email");
+       const name = emailName.substring(0, emailName.lastIndexOf("@"));
+ 
+   try {
+     const res = axios.delete(
+       `https://mail-box-client-8aa4b-default-rtdb.firebaseio.com/${name}/receive/${id}.json`,
+     );
+     const result =email.filter((item)=>item.id !== id);
+     dispatch(addNewMails(result))
+     
+     console.log("Sucessfully deleted");
+     console.log(res);
+   } catch (err) {
+     console.log(err);
+   }
+  }
+
   return (
     <>
       <div className="email_list">
-        {email === [] ? (
-          <h3>Your new messages will appear here.</h3>
-        ) : (
-          email.map((element) => {
+      
+       
+         { email.map((element) => {
             return (
               <EmailInbox
                 Sender={element.Sender}
@@ -56,10 +73,11 @@ const EmailList = () => {
                 key={element.id}
                 id={element.id}
                 time={element.time}
+                onDelete={deleteHandler}
               />
             );
           })
-        )}
+        }
       </div>
     </>
   );

@@ -29,7 +29,7 @@ const sendMailHandler = async(event) =>{
         email: senderEmail,
         subject: subjectRef.current.value,
         body: text,
-        read:false,
+        read: false,
         time: new Date().getTime(),
       };
       console.log(data)
@@ -46,7 +46,7 @@ const sendMailHandler = async(event) =>{
               );
               if(res2.statusText==='OK'){
                 alert('Sent Mail Successfully');
-               
+                 localStorage.setItem("reciver",reciever)
                  dispatch(closeSendMessage());
                  
               }else{

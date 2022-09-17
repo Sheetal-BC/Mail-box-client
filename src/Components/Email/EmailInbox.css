@@ -1,15 +1,23 @@
+.list{
+  display:flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid whitesmoke;
+}
+.list:hover{
+ cursor: pointer;
+ background-color: whitesmoke;
+}
 .mailBody {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid whitesmoke;
   padding: 0px 10px;
   height: 40px;
 }
-
-.mailBody:hover {
+/* .mailBody:hover {
   box-shadow: 2px 2px 4px whitesmoke;
   cursor: pointer;
-}
+} */
 
 .mailBody_left {
   display: flex;
@@ -32,6 +40,7 @@
   display: flex;
   align-items: center;
   flex: 90%;
+  min-width: 400px;
 }
 .mailBody_middle_msg {
   display: flex;
@@ -66,6 +75,7 @@
 .mailBody_right {
   display: flex;
   align-items: center;
+  min-width: 300px;
   flex: 12%;
 }
 
@@ -82,4 +92,24 @@
   color: rgb(209, 182, 235);
   padding-right: 5px;
   padding-bottom: 7px;
+}
+
+.list button{
+  border: none;
+  background-color: transparent;
+  color:gray;
+  margin-right: 20px;
+  transition: width height 2s;
+}
+
+.list button:hover{
+  cursor: pointer;
+  color: darkslategray;
+
+}
+.list button svg:hover{
+  cursor: pointer;
+  color: darkslategray;
+  width: 25px;
+  height: 25px;
 }

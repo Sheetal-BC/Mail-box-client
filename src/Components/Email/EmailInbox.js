@@ -1,6 +1,6 @@
 
 import React from "react";
-import { faSquare, faStar} from "@fortawesome/free-regular-svg-icons";
+import { faSquare, faStar, faTrashCan} from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import parse from "html-react-parser";
 import './EmailInbox.css';
@@ -17,7 +17,8 @@ const EmailInbox = ({
   body,
   time,
   isRead,
-  id
+  onDelete,
+  id,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -27,8 +28,7 @@ const EmailInbox = ({
 
   let timestamps = new Date(time).toLocaleTimeString(time);
 
-
-  const openMail = async() => {
+  const openMail = async () => {
     dispatch(
       getDetailOnClick({
         Sender,
@@ -38,7 +38,7 @@ const EmailInbox = ({
         body,
         time,
         isRead,
-        id
+        id,
       })
     );
     const data = {
@@ -57,25 +57,33 @@ const EmailInbox = ({
   };
 
   return (
-    <div onClick={openMail} className="mailBody">
-      <div className="mailBody_left">
-        <FontAwesomeIcon icon={faSquare} />
-        {!isRead && <h1 className={isRead ? "read" : "unread"}>•</h1>}
-        <h4 className={isRead ? "read" : "unread"}>{Sender}</h4>
-      </div>
-      <div className="mailBody_middle">
-        <div className="mailBody_middle_msg">
-          <FontAwesomeIcon icon={faStar} />
-          <h6 >
-            <b className={isRead ? "read" : "unread"}>{subject}</b>
-            {emailBody}
-          </h6>
+    <>
+      <div className="list">
+        <div onClick={openMail} className="mailBody">
+          <div className="mailBody_left">
+            <FontAwesomeIcon icon={faSquare} />
+            {!isRead && <h1 className={isRead ? "read" : "unread"}>•</h1>}
+            <h4 className={isRead ? "read" : "unread"}>{Sender}</h4>
+          </div>
+          <div className="mailBody_middle">
+            <div className="mailBody_middle_msg">
+              <FontAwesomeIcon icon={faStar} />
+              <h6>
+                <b className={isRead ? "read" : "unread"}>{subject}</b>
+                {emailBody}
+              </h6>
+            </div>
+          </div>
+
+          <div className="mailBody_right">
+            <p className={isRead ? "read" : "unread"}>{timestamps}</p>
+          </div>
         </div>
+        <button onClick={() => onDelete(id)}>
+          <FontAwesomeIcon icon={faTrashCan} size="2x" />
+        </button>
       </div>
-      <div className="mailBody_right">
-        <p className={isRead ? "read" : "unread"}>{timestamps}</p>
-      </div>
-    </div>
+    </>
   );
 };
 

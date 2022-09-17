@@ -4,6 +4,7 @@ const initialMail = {
   sendMessageIsOpen: false,
   mailItem: [],
   openMessage: null,
+  openText:true
 };
 export const mailSlice = createSlice({
     name : 'mail',
