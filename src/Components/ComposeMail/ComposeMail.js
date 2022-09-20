@@ -1,12 +1,11 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import {addNewMails, closeSendMessage} from '../store/mailSlice';
+import { addNewMails, closeSendMessage } from "../store/mailSlice";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import './ComposeMail.css';
+import "./ComposeMail.css";
 import TextEditor from "../Editor/TextEditor";
-
 
 const ComposeMail = () => {
   const emailRef = useRef();
@@ -14,56 +13,57 @@ const ComposeMail = () => {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
 
-const sendMailHandler = async(event) =>{
+  const sendMailHandler = async (event) => {
+    event.preventDefault();
 
-     event.preventDefault();
-
-      const enteredToEmail = emailRef.current.value;
-      const senderEmail = localStorage.getItem('email');
-      const reciever = enteredToEmail.substring(0, enteredToEmail.lastIndexOf("@"));
-      const Sender = senderEmail.substring(0, senderEmail.lastIndexOf("@"));
-      console.log(Sender)
-      const data = {
-        Sender,
-        reciever,
-        email: senderEmail,
-        subject: subjectRef.current.value,
-        body: text,
-        read: false,
-        time: new Date().getTime(),
-      };
-      console.log(data)
-      try{
-          const res = await axios.post(
-            `https://mail-box-client-8aa4b-default-rtdb.firebaseio.com/${reciever}/receive.json`,
-            data
-          );
-          if(res.statusText==='OK'){
-
-              const res2 = await axios.post(
-                `https://mail-box-client-8aa4b-default-rtdb.firebaseio.com/${Sender}/send.json`,
-                data
-              );
-              if(res2.statusText==='OK'){
-                alert('Sent Mail Successfully');
-                 localStorage.setItem("reciver",reciever)
-                 dispatch(closeSendMessage());
-                 
-              }else{
-                  throw new Error('Error sending a mail');
-              }
-
-          }else{
-            throw new Error("Error sending a mail");
-          }
-      }catch(err){
-          alert(err);
+    const enteredToEmail = emailRef.current.value;
+    const senderEmail = localStorage.getItem("email");
+    const reciever = enteredToEmail.substring(
+      0,
+      enteredToEmail.lastIndexOf("@")
+    );
+    const Sender = senderEmail.substring(0, senderEmail.lastIndexOf("@"));
+    console.log(Sender);
+    const data = {
+      Sender,
+      reciever,
+      email: senderEmail,
+      subject: subjectRef.current.value,
+      body: text,
+      read: false,
+      time: new Date().getTime(),
+    };
+    console.log(data);
+    try {
+      const res = await axios.post(
+        `https://mail-box-client-8aa4b-default-rtdb.firebaseio.com/${reciever}/receive.json`,
+        data
+      );
+      if (res.statusText === "OK") {
+        const res2 = await axios.post(
+          `https://mail-box-client-8aa4b-default-rtdb.firebaseio.com/${Sender}/send.json`,
+          data
+        );
+        if (res2.statusText === "OK") {
+          if(reciever === Sender)
+          alert("Sender and reciever email is same")
+          alert("Sent Mail Successfully");
+          localStorage.setItem("reciver", reciever);
+          dispatch(closeSendMessage());
+        } else {
+          throw new Error("Error sending a mail");
+        }
+      } else {
+        throw new Error("Error sending a mail");
       }
-}
-  
-  const closeHandler = () =>{
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const closeHandler = () => {
     dispatch(closeSendMessage());
-  }
+  };
   return (
     <div className="composeMail">
       <div className="composeMail_header">
@@ -86,12 +86,13 @@ const sendMailHandler = async(event) =>{
 
         <div className="send">
           <button onClick={sendMailHandler} className="sendMail">
-            Send <FontAwesomeIcon icon={faPaperPlane} className="plane" size="1x" />
+            Send{" "}
+            <FontAwesomeIcon icon={faPaperPlane} className="plane" size="1x" />
           </button>
         </div>
       </form>
     </div>
   );
-}
+};
 
 export default ComposeMail;

@@ -40,7 +40,7 @@ function EmailDetails() {
       <div className="mail_tools">
         <div className="mail_toolsleft">
           <FontAwesomeIcon
-            onClick={() => history.push("/inbox")}
+            onClick={() => history.goBack()}
             icon={faArrowLeft}
             size="1x"
           />
@@ -78,13 +78,16 @@ function EmailDetails() {
               <div className="user_icon">
                 <FontAwesomeIcon icon={faCircleUser} size="3x" />
               </div>
-             <div className="sender">
-              <h2>{Sname}<span>
-                {"<"}
-                {selectedEmail.email}
-                {">"}</span></h2>
-              
-              
+              <div className="sender">
+                <h2>
+                  {Sname}
+                  <span>
+                    {"<"}
+                    {selectedEmail.email}
+                    {">"}
+                  </span>
+                </h2>
+
                 <h3>To:{Rname}</h3>
               </div>
             </div>

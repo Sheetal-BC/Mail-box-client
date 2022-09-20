@@ -1,10 +1,13 @@
-
 import React from "react";
-import { faSquare, faStar, faTrashCan} from "@fortawesome/free-regular-svg-icons";
+import {
+  faSquare,
+  faStar,
+  faTrashCan,
+} from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import parse from "html-react-parser";
-import './EmailInbox.css';
-import { getDetailOnClick } from "../store/mailSlice";
+import "./EmailInbox.css";
+import { getDetailOnClick, getInboxMails } from "../store/mailSlice";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -24,7 +27,6 @@ const EmailInbox = ({
   const dispatch = useDispatch();
 
   let emailBody = parse(body);
-  //  let mailBody = emailBody.replace(/(<([^>]+)>)/gi, "");
 
   let timestamps = new Date(time).toLocaleTimeString(time);
 
@@ -45,15 +47,42 @@ const EmailInbox = ({
       read: true,
     };
     try {
-      const response = await axios.patch(
-        `https://mail-box-client-8aa4b-default-rtdb.firebaseio.com/${reciever}/receive/${id}.json`,
-        data
-      );
+      const response = await axios
+        .patch(
+          `https://mail-box-client-8aa4b-default-rtdb.firebaseio.com/${reciever}/receive/${id}.json`,
+          data
+        )
+        .then((resp) => {
+          getInboxCount();
+        });
       console.log(response);
     } catch (err) {
       console.log(err);
     }
     history.push("/mail");
+  };
+
+  const getInboxCount = async () => {
+    let arr = [];
+    const emailName = localStorage.getItem("email");
+    const name = emailName.substring(0, emailName.lastIndexOf("@"));
+    try {
+      const res = await axios.get(
+        `https://mail-box-client-8aa4b-default-rtdb.firebaseio.com/${name}/receive.json`
+      );
+      if (res.statusText === "OK") {
+        let index = 0;
+        for (const key in res.data) {
+          arr[index] = res.data[key];
+          arr[index].id = key;
+          index++;
+        }
+        dispatch(getInboxMails(arr));
+        console.log(arr);
+      }
+    } catch (err) {
+      console.log(`${err}`);
+    }
   };
 
   return (

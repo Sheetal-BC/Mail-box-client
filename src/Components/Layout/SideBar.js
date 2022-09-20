@@ -1,39 +1,78 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { faPencil, faInbox, faHome, faPaperPlane, faStar , faEnvelopeOpen} from "@fortawesome/free-solid-svg-icons";
+import {
+  faPencil,
+  faInbox,
+  faHome,
+  faPaperPlane,
+  faStar,
+  faEnvelopeOpen,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { openSendMessage } from "../store/mailSlice";
+import {
+  addNewMails,
+  getInboxMails,
+  openSendMessage,
+} from "../store/mailSlice";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./SideBar.css";
 import SideBarOptions from "./SideBarOptions";
+import axios from "axios";
 
-function Sidebar(props) {
+function Sidebar() {
   const isLoggedIn = useSelector((state) => state.user.isAuthenticated);
   const dispatch = useDispatch();
   const [active, setActive] = useState("Home");
-  const [msgCount, setMsgCount] = useState(0);
-  const email = useSelector((state) => state.mail.mailItem);
-
+  const inboxMails = useSelector((state) => state.mail.inboxMails);
 
   const composeHandler = () => {
     dispatch(openSendMessage());
   };
 
- 
+  useEffect(() => {
+    getMailsByDuration();
+  }, []);
+
   const counter = () => {
     let num = 0;
-   email.forEach((element) => {
+    inboxMails.forEach((element) => {
       if (!element.read) {
         num++;
       }
-      setMsgCount(num);
     });
+    return num;
   };
-  useEffect(() => {
-    counter();
-  });
 
+  const getMailsByDuration = () => {
+    setInterval(() => {
+      fecthMails();
+    }, 2000);
+  };
+  const fecthMails = async () => {
+    let arr = [];
+
+    const emailName = localStorage.getItem("email");
+    const name = emailName.substring(0, emailName.lastIndexOf("@"));
+    try {
+      const res = await axios.get(
+        `https://mail-box-client-8aa4b-default-rtdb.firebaseio.com/${name}/receive.json`
+      );
+      if (res.statusText === "OK") {
+        let index = 0;
+        for (const key in res.data) {
+          arr[index] = res.data[key];
+          arr[index].id = key;
+          index++;
+        }
+        dispatch(addNewMails(arr));
+        dispatch(getInboxMails(arr));
+        console.log(arr);
+      }
+    } catch (err) {
+      console.log(`${err}`);
+    }
+  };
 
   return (
     <div className="mail_sidebar">
@@ -59,7 +98,7 @@ function Sidebar(props) {
           }`}
         >
           <Link to="/inbox">
-            <SideBarOptions icon={faInbox} title="Inbox" number={msgCount} />
+            <SideBarOptions icon={faInbox} title="Inbox" number={counter()} />
           </Link>
         </div>
         <div
